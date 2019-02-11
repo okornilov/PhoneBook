@@ -6,10 +6,12 @@
 
     <groupId>ru.company</groupId>
     <artifactId>phone-book</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>personws</module>
+        <module>web</module>
     </modules>
 
     
