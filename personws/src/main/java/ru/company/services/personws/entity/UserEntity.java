@@ -1,4 +1,4 @@
-package ru.company.services.personws.domain;
+package ru.company.services.personws.entity;
 
 import lombok.*;
 
@@ -9,7 +9,7 @@ import java.util.Date;
 @XmlRootElement
 @XmlAccessorType(value = XmlAccessType.FIELD)
 @Entity
-@Table
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,11 +17,13 @@ import java.util.Date;
 @ToString
 @org.hibernate.annotations.NamedQueries({
     @org.hibernate.annotations.NamedQuery(name = "PersonFindByParams",
-            query = "from Person order by id"),
+            query = "from UserEntity order by id"),
     @org.hibernate.annotations.NamedQuery(name = "PersonDelete",
-            query = "delete from Person where id=:id")
+            query = "delete from UserEntity where id=:id"),
+        @org.hibernate.annotations.NamedQuery(name = "PersonAuth",
+                query = "from UserEntity where login=:login and password=:password")
 })
-public class Person {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -13,7 +13,12 @@
 <h:body>
     <div class="container">
         <br/>
-        <h2>List of positions</h2>
+        <h2>List of users</h2>
+        <br/>
+
+        <h:form>
+            <h:commandLink action="#{userListBean.logout()}" value="Logout"/>
+        </h:form>
         <br/>
         <h:dataTable value="#{userListBean.personList}" var="person" styleClass="table table-hover table-bordered">
             <h:column>

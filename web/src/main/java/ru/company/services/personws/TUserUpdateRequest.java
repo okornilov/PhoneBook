@@ -9,16 +9,16 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for person complex type.
+ * <p>Java class for tUserUpdateRequest complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="person">
+ * &lt;complexType name="tUserUpdateRequest">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="userId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="login" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="firstName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -27,6 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="birthDate" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="phoneCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="phoneNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,8 +37,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "person", propOrder = {
-    "id",
+@XmlType(name = "tUserUpdateRequest", propOrder = {
+    "userId",
     "login",
     "password",
     "firstName",
@@ -45,11 +46,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "middleName",
     "birthDate",
     "phoneCode",
-    "phoneNumber"
+    "phoneNumber",
+    "email"
 })
-public class Person {
+public class TUserUpdateRequest {
 
-    protected Long id;
+    protected long userId;
     protected String login;
     protected String password;
     protected String firstName;
@@ -59,29 +61,22 @@ public class Person {
     protected XMLGregorianCalendar birthDate;
     protected String phoneCode;
     protected String phoneNumber;
+    protected String email;
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the userId property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
      */
-    public Long getId() {
-        return id;
+    public long getUserId() {
+        return userId;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the userId property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
      */
-    public void setId(Long value) {
-        this.id = value;
+    public void setUserId(long value) {
+        this.userId = value;
     }
 
     /**
@@ -274,6 +269,30 @@ public class Person {
      */
     public void setPhoneNumber(String value) {
         this.phoneNumber = value;
+    }
+
+    /**
+     * Gets the value of the email property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets the value of the email property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEmail(String value) {
+        this.email = value;
     }
 
 }

@@ -1,16 +1,16 @@
 package ru.company.services.web.beans;
 
-import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import lombok.Data;
-import ru.company.services.personws.Person;
-import ru.company.services.web.api.PersonList;
-import ru.company.services.web.api.PersonService;
-import ru.company.services.web.api.PersonServiceImplService;
+import ru.company.services.personws.TUser;
+import ru.company.services.personws.TUserListResponse;
+import ru.company.services.personws.UserServiceImpl;
+import ru.company.services.personws.UserServiceImplService;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import java.util.List;
 
 @ManagedBean
@@ -18,19 +18,24 @@ import java.util.List;
 @Data
 public class UserListBean {
 
-    private List<Person> personList;
+    private List<TUser> personList;
 
 
     @PostConstruct
     public void init(){
-        PersonServiceImplService personService = new PersonServiceImplService();
-        PersonService personServiceImplPort = personService.getPersonServiceImplPort();
-        PersonList list = personServiceImplPort.getList(new Person());
-        personList = list.getPerson();
+        UserServiceImplService serviceImplService = new UserServiceImplService();
+        UserServiceImpl userServiceImplPort = serviceImplService.getUserServiceImplPort();
+        TUserListResponse tUserListResponse = userServiceImplPort.userGetList(new TUser());
+        personList = tUserListResponse.getUser();
     }
 
     @PreDestroy
     public void destroy(){
+    }
+
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/login.xhtml?faces-redirect=true";
     }
 
 }

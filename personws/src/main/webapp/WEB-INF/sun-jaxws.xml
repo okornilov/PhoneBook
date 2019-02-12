@@ -4,6 +4,11 @@
         version="2.0">
     <endpoint
             name="person"
-            implementation="ru.company.services.personws.PersonServiceImpl"
+            implementation="ru.company.services.personws.UserServiceImpl"
             url-pattern="/personws"/>
+
+    <endpoint
+            name="auth"
+            implementation="ru.company.services.personws.AuthServiceImpl"
+            url-pattern="/auth"/>
 </endpoints>

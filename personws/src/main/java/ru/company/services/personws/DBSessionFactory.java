@@ -5,8 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import ru.company.services.personws.domain.DataBase;
-import ru.company.services.personws.domain.Person;
+import ru.company.ConfigUtils;
+import ru.company.type.TDataBase;
+import ru.company.services.personws.entity.UserEntity;
 
 public class DBSessionFactory {
 
@@ -27,14 +28,14 @@ public class DBSessionFactory {
         }
 
 
-        DataBase database = ConfigUtils.getDataBase();
+        TDataBase database = ConfigUtils.getDataBase();
 
         if (database == null){
             logger.error("database params not found");
         }
 
         Configuration cfg = new Configuration()
-                .addAnnotatedClass(Person.class);
+                .addAnnotatedClass(UserEntity.class);
 
         cfg.setProperty("hibernate.connection.url", database.getUrl());
         cfg.setProperty("hibernate.connection.username", database.getUser());

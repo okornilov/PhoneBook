@@ -10,9 +10,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>utils</module>
         <module>personws</module>
         <module>web</module>
     </modules>
 
-    
 </project>
