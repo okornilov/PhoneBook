@@ -15,17 +15,46 @@
         <br/>
         <h2>List of positions</h2>
         <br/>
-        <h:dataTable value="#{userListBean.userList}" var="user" styleClass="table table-hover table-bordered">
+        <h:dataTable value="#{userListBean.personList}" var="person" styleClass="table table-hover table-bordered">
+            <h:column>
+                <c:facet name="header">
+                    <h:outputText value="Last name"/>
+                </c:facet>
+                <h:outputText value="#{person.lastName}"/>
+            </h:column>
             <h:column>
                 <c:facet name="header">
                     <h:outputText value="First name"/>
                 </c:facet>
-                <h:outputText value="#{user.firstName}"/>
+                <h:outputText value="#{person.firstName}"/>
+            </h:column>
+            <h:column>
+                <c:facet name="header">
+                    <h:outputText value="Middle name"/>
+                </c:facet>
+                <h:outputText value="#{person.middleName}"/>
+            </h:column>
+            <h:column>
+                <c:facet name="header">
+                    <h:outputText value="Login"/>
+                </c:facet>
+                <h:outputText value="#{person.login}"/>
+            </h:column>
+            <h:column>
+                <c:facet name="header">
+                    <h:outputText value="Birth date"/>
+                </c:facet>
+                <h:outputText value="#{person.birthDate.toGregorianCalendar().getTime()}">
+                    <c:convertDateTime pattern="dd.MM.yyyy" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <c:facet name="header">
+                    <h:outputText value="Phone number"/>
+                </c:facet>
+                <h:outputText value="#{person.phoneCode} #{person.phoneNumber}"/>
             </h:column>
         </h:dataTable>
-        <h:form>
-            <h:commandLink action="main" value="Back"/>
-        </h:form>
     </div>
 
 </h:body>
