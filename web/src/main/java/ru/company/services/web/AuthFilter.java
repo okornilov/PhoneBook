@@ -1,5 +1,6 @@
 package ru.company.services.web;
 
+import javax.faces.application.ResourceHandler;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,13 +18,14 @@ public class AuthFilter implements Filter {
         String loginURL = request.getContextPath() + "/login.xhtml";
         boolean loggedIn = (session != null) && (session.getAttribute("token") != null);
         boolean loginRequest = request.getRequestURI().equals(loginURL);
+        boolean resourceRequest = request.getRequestURI().startsWith(request.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER + "/");
 
         if (loggedIn && loginRequest){
             response.sendRedirect("userlist.xhtml");
             return;
         }
 
-        if (!loggedIn && !loginRequest){
+        if (!loggedIn && !loginRequest && !resourceRequest){
             response.sendRedirect("login.xhtml");
             return;
         }

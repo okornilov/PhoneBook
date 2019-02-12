@@ -1,5 +1,6 @@
 package ru.company.services.personws;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import ru.company.services.personws.entity.UserEntity;
@@ -21,21 +22,23 @@ public class AuthServiceImpl implements AuthService {
     public TAuthResponse auth(@WebParam(name = "authRequest") TAuthRequest authRequest) {
         Session session = DBSessionFactory.getSession();
         TAuthResponse authResponse = new TAuthResponse();
-        UserEntity userEntity = null;
 
         try {
             Query<UserEntity> personAuth = session.createNamedQuery("PersonAuth", UserEntity.class);
             personAuth.setParameter("login", authRequest.getLogin());
             personAuth.setParameter("password", authRequest.getPassword());
-            userEntity = personAuth.uniqueResult();
-        } finally {
-            session.close();
+            UserEntity userEntity = personAuth.uniqueResult();
+
             if (userEntity != null){
                 authResponse.setToken(UUID.randomUUID().toString());
                 authResponse.setResponseStatus(new TResponseStatus(0L, "No errors"));
             } else {
-                authResponse.setResponseStatus(new TResponseStatus(403L, "Unauthorized"));
+                authResponse.setResponseStatus(new TResponseStatus(403L, "Incorrect login or password"));
             }
+        }catch (HibernateException e){
+            authResponse.setResponseStatus(new TResponseStatus(500L, e.getMessage()));
+        } finally {
+            session.close();
         }
         return authResponse;
     }

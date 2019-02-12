@@ -21,6 +21,10 @@ public class DBSessionFactory {
     public static void init(){
         logger.debug("init session factory");
 
+        if (sessionFactory != null){
+            return;
+        }
+
         try {
             Class.forName("org.postgresql.Driver");
         } catch (Exception x){

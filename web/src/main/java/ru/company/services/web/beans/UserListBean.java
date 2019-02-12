@@ -38,4 +38,8 @@ public class UserListBean {
         return "/login.xhtml?faces-redirect=true";
     }
 
+    public String add(){
+        return "useritem";
+    }
+
 }

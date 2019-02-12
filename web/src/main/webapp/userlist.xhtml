@@ -14,10 +14,9 @@
     <div class="container">
         <br/>
         <h2>List of users</h2>
-        <br/>
-
         <h:form>
-            <h:commandLink action="#{userListBean.logout()}" value="Logout"/>
+            <h:commandButton action="#{userListBean.add()}" value="Add" styleClass="btn btn-primary"/>
+            <h:commandButton action="#{userListBean.logout()}" value="Logout" styleClass="btn btn-secondary"/>
         </h:form>
         <br/>
         <h:dataTable value="#{userListBean.personList}" var="person" styleClass="table table-hover table-bordered">

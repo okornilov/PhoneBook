@@ -16,15 +16,25 @@
         <br/>
         <h2>Authorization</h2>
         <br/>
+        <div style="display:#{loginBean.loginMessage == null  ? 'none' : 'block'}">
+            <div class="alert alert-danger" role="alert">
+                <h:outputText value="#{loginBean.loginMessage}"/>
+            </div>
+        </div>
+
         <h:form>
             <div class="form-group">
                 <label for="login">Login</label>
-                <h:inputText id="login" value="#{loginBean.login}" styleClass="form-control" a:placeholder="Email login" required="true"/>
+                <h:inputText id="login" value="#{loginBean.login}" styleClass="form-control" a:placeholder="Email login"
+                             required="true" requiredMessage="Login cannot be empty"/>
+                <h:message style="color:red" for="login" />
             </div>
 
             <div class="form-group">
                 <label for="password">Enter name</label>
-                <h:inputText id="name" value="#{loginBean.password}" styleClass="form-control" a:placeholder="Enter password"/>
+                <h:inputSecret id="password" value="#{loginBean.password}" styleClass="form-control" a:placeholder="Enter password"
+                             required="true" requiredMessage="Password cannot be empty"/>
+                <h:message style="color:red" for="password" />
             </div>
 
             <h:commandButton action="#{loginBean.doLogin()}" value="Enter" styleClass="btn btn-primary"/>
