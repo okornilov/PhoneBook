@@ -5,4 +5,5 @@
         <user>postgres</user>
         <password>qw!</password>
     </database>
+    <hostUrl>https://app.vs4.ru</hostUrl>
 </root>
