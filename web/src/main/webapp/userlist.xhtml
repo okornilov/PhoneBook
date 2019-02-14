@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsf/core">
+      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <meta charset="utf-8"/>
@@ -10,16 +11,23 @@
     <h:outputScript library="js" name="bootstrap.min.js"/>
 </h:head>
 
-<h:body>
-    <div class="container">
+<h:body style="background: whitesmoke">
+    <div class="container-fluid">
         <br/>
         <h2>List of users</h2>
+
         <h:form>
-            <h:commandButton action="#{userListBean.add()}" value="Add" styleClass="btn btn-primary"/>
-            <h:commandButton action="#{userListBean.logout()}" value="Logout" styleClass="btn btn-secondary"/>
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <h:commandButton action="#{userListBean.add()}" value="Add new user" styleClass="btn btn-primary"/>
+                </div>
+                <div class="col-auto">
+                    <h:commandButton action="#{userListBean.logout()}" value="Logout" styleClass="btn btn-secondary"/>
+                </div>
+            </div>
         </h:form>
         <br/>
-        <h:dataTable value="#{userListBean.personList}" var="person" styleClass="table table-hover table-bordered">
+        <!--<h:dataTable value="#{userListBean.personList}" var="person" styleClass="table table-hover table-bordered">
             <h:column>
                 <c:facet name="header">
                     <h:outputText value="Last name"/>
@@ -58,7 +66,35 @@
                 </c:facet>
                 <h:outputText value="#{person.phoneCode} #{person.phoneNumber}"/>
             </h:column>
-        </h:dataTable>
+        </h:dataTable>-->
+
+        <div class="list-group">
+            <ui:repeat value="#{userListBean.personList}" var="person" varStatus="loop">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="media">
+                        <h:graphicImage name="images/person.png" styleClass="mr-3" width="100px" height="100px"/>
+                        <div class="media-body">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">#{person.lastName} #{person.firstName} #{person.middleName}</h5>
+                                <div>
+                                    <small class="text-muted">Login: </small>#{person.login}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    Phone: +7(#{person.phoneCode})#{person.phoneNumber}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h:commandButton type="submit" styleClass="btn btn-danger" value="Delete" action="#{userListBean.delete()}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </ui:repeat>
+        </div>
     </div>
 
 </h:body>

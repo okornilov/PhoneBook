@@ -11,35 +11,44 @@
     <h:outputScript library="js" name="bootstrap.min.js"/>
 </h:head>
 
-<h:body>
+<h:body style="background: #6c757d">
     <div class="container">
-        <br/>
-        <h2>Authorization</h2>
-        <br/>
-        <div style="display:#{loginBean.loginMessage == null  ? 'none' : 'block'}">
-            <div class="alert alert-danger" role="alert">
-                <h:outputText value="#{loginBean.loginMessage}"/>
+
+        <div class="row justify-content-center align-items-center" style="height:100vh">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-5">
+                <h:form action="" autocomplete="off">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Authorization</h3>
+                        </div>
+                        <div class="card-body">
+                            <div style="display:#{loginBean.loginMessage == null  ? 'none' : 'block'}">
+                                <div class="alert alert-danger" role="alert">
+                                    <h:outputText value="#{loginBean.loginMessage}"/>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <label for="login">Login</label>
+                                    <h:inputText id="login" value="#{loginBean.login}" styleClass="form-control" a:placeholder="Email login"
+                                                 required="true" requiredMessage="Login cannot be empty"/>
+                                    <h:message style="color:red" for="login" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Enter name</label>
+                                    <h:inputSecret id="password" value="#{loginBean.password}" styleClass="form-control" a:placeholder="Enter password"
+                                                   required="true" requiredMessage="Password cannot be empty"/>
+                                    <h:message style="color:red" for="password" />
+                                </div>
+                        </div>
+                        <div class="card-footer">
+                            <h:commandButton action="#{loginBean.doLogin()}" value="Enter" styleClass="btn btn-primary"/>
+                        </div>
+                    </div>
+                </h:form>
+
             </div>
         </div>
-
-        <h:form>
-            <div class="form-group">
-                <label for="login">Login</label>
-                <h:inputText id="login" value="#{loginBean.login}" styleClass="form-control" a:placeholder="Email login"
-                             required="true" requiredMessage="Login cannot be empty"/>
-                <h:message style="color:red" for="login" />
-            </div>
-
-            <div class="form-group">
-                <label for="password">Enter name</label>
-                <h:inputSecret id="password" value="#{loginBean.password}" styleClass="form-control" a:placeholder="Enter password"
-                             required="true" requiredMessage="Password cannot be empty"/>
-                <h:message style="color:red" for="password" />
-            </div>
-
-            <h:commandButton action="#{loginBean.doLogin()}" value="Enter" styleClass="btn btn-primary"/>
-
-        </h:form>
     </div>
 </h:body>
 </html>
