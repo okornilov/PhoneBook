@@ -115,13 +115,16 @@ public class UserServiceImpl implements UserService {
         }
 
         Session session = DBSessionFactory.getSession();
+        Transaction transaction = session.beginTransaction();
         try {
             Query personDelete = session.createNamedQuery("PersonDelete");
             personDelete.setParameter("id", userDeleteRequest.getUserId());
             personDelete.executeUpdate();
+            transaction.commit();
             tUserDeleteResponse.setResponseStatus(new TResponseStatus(0L, "No errors"));
         } catch (HibernateException e){
             logger.error(e);
+            transaction.rollback();
             tUserDeleteResponse.setResponseStatus(new TResponseStatus(500L, e.getMessage()));
         }
         finally {
@@ -138,7 +141,7 @@ public class UserServiceImpl implements UserService {
         Session session = DBSessionFactory.getSession();
         try {
             List<UserEntity> resultList = session.createNamedQuery("PersonFindByParams", UserEntity.class).getResultList();
-            for (UserEntity p : resultList){
+            for (UserEntity p : resultList) {
                 TUser tUser = new TUser();
                 tUser.setId(p.getId());
                 tUser.setFirstName(p.getFirstName());
@@ -149,6 +152,7 @@ public class UserServiceImpl implements UserService {
                 tUser.setPhoneCode(p.getPhoneCode());
                 tUser.setPhoneNumber(p.getPhoneNumber());
                 userListResponse.getUsers().add(tUser);
+                userListResponse.setTotalCount(resultList.size());
             }
             userListResponse.setResponseStatus(new TResponseStatus(0L, "No errors"));
         } catch (HibernateException e){

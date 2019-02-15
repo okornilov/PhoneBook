@@ -11,24 +11,77 @@
     <h:outputScript library="js" name="bootstrap.min.js"/>
 </h:head>
 
-<h:body>
-    <div class="container">
-        <br/>
-        <h2>User item</h2>
-        <br/>
-        <h:form>
-            <div class="form-group">
-                <label for="login">Login</label>
-                <h:inputText id="login" value="#{userItemBean.login}" styleClass="form-control" a:placeholder="Email login" required="true"/>
-            </div>
+<h:body style="background: whitesmoke">
+    <div class="container-fluid">
 
-            <div class="form-group">
-                <label for="password">Enter password</label>
-                <h:inputText id="password" value="#{userItemBean.password}" styleClass="form-control" a:placeholder="Enter password"/>
-            </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-7 col-lg-5 col-xl-4">
+                <br/>
+                <h2>User item</h2>
+                <br/>
+                <div class="card">
+                    <div class="card-body">
+                        <h:form>
+                            <div class="form-group">
+                                <label for="login">Login</label>
+                                <h:inputText id="login" value="#{userItemBean.login}" styleClass="form-control" a:placeholder="Email login" required="true"
+                                             requiredMessage="Login cannot be empty"/>
+                                <h:message style="color:red" for="login" />
+                            </div>
 
-            <h:commandButton action="#{userItemBean.doAction()}" value="#{userItemBean.actionName}" styleClass="btn btn-primary"/>
-        </h:form>
+                            <div class="form-group">
+                                <label for="password">Enter password</label>
+                                <h:inputText id="password" value="#{userItemBean.password}" styleClass="form-control" a:placeholder="Enter password" required="true"
+                                             requiredMessage="Password cannot be empty"/>
+                                <h:message style="color:red" for="password" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="firstName">First name</label>
+                                <h:inputText id="firstName" value="#{userItemBean.firstName}" styleClass="form-control" a:placeholder="First name" required="true"
+                                             requiredMessage="First name cannot be empty"/>
+                                <h:message style="color:red" for="firstName" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Last name</label>
+                                <h:inputText id="lastName" value="#{userItemBean.lastName}" styleClass="form-control" a:placeholder="Last name" required="true"
+                                             requiredMessage="Last name cannot be empty"/>
+                                <h:message style="color:red" for="lastName" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="middleName">Middle name</label>
+                                <h:inputText id="middleName" value="#{userItemBean.middleName}" styleClass="form-control" a:placeholder="Middle name"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phoneCode">Phone code</label>
+                                <h:inputText id="phoneCode" value="#{userItemBean.phoneCode}" styleClass="form-control" a:placeholder="Phone code" required="true"
+                                             requiredMessage="Phone code cannot be empty"/>
+                                <h:message style="color:red" for="phoneCode" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone number</label>
+                                <h:inputText id="phoneNumber" value="#{userItemBean.phoneNumber}" styleClass="form-control" a:placeholder="Phone number" required="true"
+                                             requiredMessage="Phone number cannot be empty"/>
+                                <h:message style="color:red" for="phoneNumber" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-auto mr-auto">
+                                    <h:commandButton action="userlist" value="Cancel" styleClass="btn btn-secondary" immediate="true"/>
+                                </div>
+                                <div class="col-auto">
+                                    <h:commandButton action="#{userItemBean.doAction()}" value="#{userItemBean.actionName}" styleClass="btn btn-success"/>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </h:body>
 </html>

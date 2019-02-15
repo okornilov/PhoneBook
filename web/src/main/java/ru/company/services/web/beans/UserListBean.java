@@ -1,10 +1,7 @@
 package ru.company.services.web.beans;
 
 import lombok.Data;
-import ru.company.services.personws.TUser;
-import ru.company.services.personws.TUserListResponse;
-import ru.company.services.personws.UserServiceImpl;
-import ru.company.services.personws.UserServiceImplService;
+import ru.company.services.personws.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -19,6 +16,8 @@ import java.util.List;
 public class UserListBean {
 
     private List<TUser> personList;
+    private Integer totalCount;
+    private UserServiceImpl userServiceImplPort;
 
 
     @PostConstruct
@@ -26,6 +25,7 @@ public class UserListBean {
         UserServiceImplService serviceImplService = new UserServiceImplService();
         UserServiceImpl userServiceImplPort = serviceImplService.getUserServiceImplPort();
         TUserListResponse tUserListResponse = userServiceImplPort.userGetList(new TUser());
+        totalCount = tUserListResponse.getTotalCount();
         personList = tUserListResponse.getUser();
     }
 
@@ -38,8 +38,12 @@ public class UserListBean {
         return "/login.xhtml?faces-redirect=true";
     }
 
-    public String delete(){
-        return "";
+    public String delete(TUser user){
+        System.out.println(user);
+        TUserDeleteRequest req = new TUserDeleteRequest();
+        req.setUserId(user.getId());
+        userServiceImplPort.userDelete(req);
+        return "/userlist.xhtml?faces-redirect=true";
     }
 
     public String add(){

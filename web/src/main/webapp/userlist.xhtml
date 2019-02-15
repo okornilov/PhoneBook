@@ -14,7 +14,7 @@
 <h:body style="background: whitesmoke">
     <div class="container-fluid">
         <br/>
-        <h2>List of users</h2>
+        <h2>List of users <span class="badge badge-secondary">#{userListBean.totalCount}</span></h2>
 
         <h:form>
             <div class="row">
@@ -26,47 +26,6 @@
                 </div>
             </div>
         </h:form>
-        <br/>
-        <!--<h:dataTable value="#{userListBean.personList}" var="person" styleClass="table table-hover table-bordered">
-            <h:column>
-                <c:facet name="header">
-                    <h:outputText value="Last name"/>
-                </c:facet>
-                <h:outputText value="#{person.lastName}"/>
-            </h:column>
-            <h:column>
-                <c:facet name="header">
-                    <h:outputText value="First name"/>
-                </c:facet>
-                <h:outputText value="#{person.firstName}"/>
-            </h:column>
-            <h:column>
-                <c:facet name="header">
-                    <h:outputText value="Middle name"/>
-                </c:facet>
-                <h:outputText value="#{person.middleName}"/>
-            </h:column>
-            <h:column>
-                <c:facet name="header">
-                    <h:outputText value="Login"/>
-                </c:facet>
-                <h:outputText value="#{person.login}"/>
-            </h:column>
-            <h:column>
-                <c:facet name="header">
-                    <h:outputText value="Birth date"/>
-                </c:facet>
-                <h:outputText value="#{person.birthDate.toGregorianCalendar().getTime()}">
-                    <c:convertDateTime pattern="dd.MM.yyyy" />
-                </h:outputText>
-            </h:column>
-            <h:column>
-                <c:facet name="header">
-                    <h:outputText value="Phone number"/>
-                </c:facet>
-                <h:outputText value="#{person.phoneCode} #{person.phoneNumber}"/>
-            </h:column>
-        </h:dataTable>-->
 
         <div class="list-group">
             <ui:repeat value="#{userListBean.personList}" var="person" varStatus="loop">
@@ -87,7 +46,9 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h:commandButton type="submit" styleClass="btn btn-danger" value="Delete" action="#{userListBean.delete()}"/>
+                                    <h:form>
+                                        <h:commandButton styleClass="btn btn-danger" value="Delete" action="#{userListBean.delete(person)}"/>
+                                    </h:form>
                                 </div>
                             </div>
                         </div>

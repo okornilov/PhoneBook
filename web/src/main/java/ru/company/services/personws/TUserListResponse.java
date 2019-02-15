@@ -31,12 +31,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "tUserListResponse", propOrder = {
     "responseStatus",
-    "user"
+    "user",
+    "totalCount"
 })
 public class TUserListResponse {
 
     protected TResponseStatus responseStatus;
     protected List<TUser> user;
+    protected Integer totalCount;
 
     /**
      * Gets the value of the responseStatus property.
@@ -91,4 +93,7 @@ public class TUserListResponse {
         return this.user;
     }
 
+    public Integer getTotalCount() {
+        return totalCount;
+    }
 }
