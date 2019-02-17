@@ -18,7 +18,7 @@
     <navigation-rule>
         <from-view-id>/userlist.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>action</from-outcome>
+            <from-outcome>useritem</from-outcome>
             <to-view-id>/useritem.xhtml</to-view-id>
             <redirect/>
         </navigation-case>

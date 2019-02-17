@@ -15,57 +15,58 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-sm-12 col-md-7 col-lg-5 col-xl-4">
+            <div class="col-sm-12 col-md-8 col-lg-6 col-xl-5">
                 <br/>
-                <h2>User item</h2>
+                <h2>User details</h2>
                 <br/>
                 <div class="card">
                     <div class="card-body">
                         <h:form>
                             <div class="form-group">
                                 <label for="login">Login</label>
-                                <h:inputText id="login" value="#{userItemBean.login}" styleClass="form-control" a:placeholder="Email login" required="true"
-                                             requiredMessage="Login cannot be empty"/>
+                                <h:inputText id="login" value="#{userDetailBean.login}" styleClass="form-control" required="true"
+                                             requiredMessage="Login cannot be empty" disabled="#{userDetailBean.isDeleteAction()}"/>
                                 <h:message style="color:red" for="login" />
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Enter password</label>
-                                <h:inputText id="password" value="#{userItemBean.password}" styleClass="form-control" a:placeholder="Enter password" required="true"
-                                             requiredMessage="Password cannot be empty"/>
+                                <h:inputText id="password" value="#{userDetailBean.password}" styleClass="form-control" required="true"
+                                             requiredMessage="Password cannot be empty" disabled="#{userDetailBean.isDeleteAction()}"/>
                                 <h:message style="color:red" for="password" />
                             </div>
 
                             <div class="form-group">
                                 <label for="firstName">First name</label>
-                                <h:inputText id="firstName" value="#{userItemBean.firstName}" styleClass="form-control" a:placeholder="First name" required="true"
-                                             requiredMessage="First name cannot be empty"/>
+                                <h:inputText id="firstName" value="#{userDetailBean.firstName}" styleClass="form-control" required="true"
+                                             requiredMessage="First name cannot be empty" disabled="#{userDetailBean.isDeleteAction()}"/>
                                 <h:message style="color:red" for="firstName" />
                             </div>
 
                             <div class="form-group">
                                 <label for="lastName">Last name</label>
-                                <h:inputText id="lastName" value="#{userItemBean.lastName}" styleClass="form-control" a:placeholder="Last name" required="true"
-                                             requiredMessage="Last name cannot be empty"/>
+                                <h:inputText id="lastName" value="#{userDetailBean.lastName}" styleClass="form-control" required="true"
+                                             requiredMessage="Last name cannot be empty" disabled="#{userDetailBean.isDeleteAction()}"/>
                                 <h:message style="color:red" for="lastName" />
                             </div>
 
                             <div class="form-group">
                                 <label for="middleName">Middle name</label>
-                                <h:inputText id="middleName" value="#{userItemBean.middleName}" styleClass="form-control" a:placeholder="Middle name"/>
+                                <h:inputText id="middleName" value="#{userDetailBean.middleName}" styleClass="form-control"
+                                             disabled="#{userDetailBean.isDeleteAction()}"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="phoneCode">Phone code</label>
-                                <h:inputText id="phoneCode" value="#{userItemBean.phoneCode}" styleClass="form-control" a:placeholder="Phone code" required="true"
-                                             requiredMessage="Phone code cannot be empty"/>
+                                <h:inputText id="phoneCode" value="#{userDetailBean.phoneCode}" styleClass="form-control" required="true"
+                                             requiredMessage="Phone code cannot be empty" disabled="#{userDetailBean.isDeleteAction()}"/>
                                 <h:message style="color:red" for="phoneCode" />
                             </div>
 
                             <div class="form-group">
                                 <label for="phoneNumber">Phone number</label>
-                                <h:inputText id="phoneNumber" value="#{userItemBean.phoneNumber}" styleClass="form-control" a:placeholder="Phone number" required="true"
-                                             requiredMessage="Phone number cannot be empty"/>
+                                <h:inputText id="phoneNumber" value="#{userDetailBean.phoneNumber}" styleClass="form-control" required="true"
+                                             requiredMessage="Phone number cannot be empty" disabled="#{userDetailBean.isDeleteAction()}"/>
                                 <h:message style="color:red" for="phoneNumber" />
                             </div>
 
@@ -74,7 +75,11 @@
                                     <h:commandButton action="userlist" value="Cancel" styleClass="btn btn-secondary" immediate="true"/>
                                 </div>
                                 <div class="col-auto">
-                                    <h:commandButton action="#{userItemBean.doAction()}" value="#{userItemBean.actionName}" styleClass="btn btn-success"/>
+                                    <h:commandButton rendered="#{not userDetailBean.isDeleteAction()}"
+                                                     action="#{userDetailBean.doAction()}" value="#{userDetailBean.action.name}" styleClass="btn btn-success"/>
+                                    <h:commandButton rendered="#{userDetailBean.isDeleteAction()}"
+                                                     action="#{userDetailBean.doAction()}" value="#{userDetailBean.action.name}" styleClass="btn btn-danger"
+                                                     immediate="true"/>
                                 </div>
                             </div>
                         </h:form>

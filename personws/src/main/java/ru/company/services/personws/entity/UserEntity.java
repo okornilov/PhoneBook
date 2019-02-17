@@ -16,12 +16,13 @@ import java.util.Date;
 @EqualsAndHashCode
 @ToString
 @org.hibernate.annotations.NamedQueries({
-    @org.hibernate.annotations.NamedQuery(name = "PersonFindByParams",
-            query = "from UserEntity order by id"),
-    @org.hibernate.annotations.NamedQuery(name = "PersonDelete",
+    @org.hibernate.annotations.NamedQuery(name = "UserGetList",
+            query = "from UserEntity where lower(firstName) like :searchText or lower(lastName) " +
+                    "like :searchText or lower(middleName) like :searchText order by id"),
+    @org.hibernate.annotations.NamedQuery(name = "UserDelete",
             query = "delete from UserEntity where id=:id"),
-        @org.hibernate.annotations.NamedQuery(name = "PersonAuth",
-                query = "from UserEntity where login=:login and password=:password")
+    @org.hibernate.annotations.NamedQuery(name = "UserAuth",
+            query = "from UserEntity where login=:login and password=:password")
 })
 public class UserEntity {
 
@@ -66,5 +67,8 @@ public class UserEntity {
     @NonNull
     @XmlElement
     private String phoneNumber;
+
+    @Column
+    private byte[] image;
 
 }

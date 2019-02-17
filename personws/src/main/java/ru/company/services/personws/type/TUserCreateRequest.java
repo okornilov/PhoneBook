@@ -41,4 +41,8 @@ public class TUserCreateRequest {
 
     @XmlElement
     private String email;
+
+    @XmlElement
+    private String image;
+
 }

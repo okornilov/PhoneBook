@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="responseStatus" type="{http://personws.services.company.ru/}tResponseStatus" minOccurs="0"/>
  *         &lt;element name="user" type="{http://personws.services.company.ru/}tUser" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="totalCount" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -93,7 +94,28 @@ public class TUserListResponse {
         return this.user;
     }
 
+    /**
+     * Gets the value of the totalCount property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
     public Integer getTotalCount() {
         return totalCount;
     }
+
+    /**
+     * Sets the value of the totalCount property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setTotalCount(Integer value) {
+        this.totalCount = value;
+    }
+
 }

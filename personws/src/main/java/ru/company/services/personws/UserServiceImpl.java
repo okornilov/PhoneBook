@@ -1,5 +1,6 @@
 package ru.company.services.personws;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -38,6 +39,11 @@ public class UserServiceImpl implements UserService {
             userEntity.setPassword(userCreateRequest.getPassword());
             userEntity.setPhoneCode(userCreateRequest.getPhoneCode());
             userEntity.setPhoneNumber(userCreateRequest.getPhoneNumber());
+
+            if (userCreateRequest.getImage() != null){
+                userEntity.setImage(Base64.decodeBase64(userCreateRequest.getImage()));
+            }
+
             Long id = (Long) session.save(userEntity);
             transaction.commit();
             tUserCreateResponse.setUserId(id);
@@ -91,6 +97,11 @@ public class UserServiceImpl implements UserService {
             if (userUpdateRequest.getPhoneNumber() != null){
                 userEntity.setPhoneNumber(userUpdateRequest.getPhoneNumber());
             }
+
+            if (userUpdateRequest.getImage() != null){
+                userEntity.setImage(Base64.decodeBase64(userUpdateRequest.getImage()));
+            }
+
             session.update(userEntity);
             transaction.commit();
             tUserUpdateResponse.setResponseStatus(new TResponseStatus(0L, "No errors"));
@@ -117,7 +128,7 @@ public class UserServiceImpl implements UserService {
         Session session = DBSessionFactory.getSession();
         Transaction transaction = session.beginTransaction();
         try {
-            Query personDelete = session.createNamedQuery("PersonDelete");
+            Query personDelete = session.createNamedQuery("UserDelete");
             personDelete.setParameter("id", userDeleteRequest.getUserId());
             personDelete.executeUpdate();
             transaction.commit();
@@ -135,12 +146,32 @@ public class UserServiceImpl implements UserService {
 
     @WebMethod
     @WebResult(name = "userListResponse")
-    public TUserListResponse userGetList(@WebParam(name = "userRequest") TUser user) {
+    public TUserListResponse userGetList(@WebParam(name = "userRequest") TUserListRequest userListRequest) {
         TUserListResponse userListResponse = new TUserListResponse();
+        Integer page = userListRequest.getPage();
+        Integer rowsCount = userListRequest.getRowsCount();
+
+        if (page == null) {
+            page = 1;
+        }
+
+        if (rowsCount == null){
+            rowsCount = 10;
+        }
 
         Session session = DBSessionFactory.getSession();
         try {
-            List<UserEntity> resultList = session.createNamedQuery("PersonFindByParams", UserEntity.class).getResultList();
+            Query namedQuery = session.createNamedQuery("UserGetList");
+            if (userListRequest.getSearchText() != null){
+                namedQuery.setParameter("searchText", "%"+ userListRequest.getSearchText().toLowerCase() + "%");
+            } else {
+                namedQuery.setParameter("searchText", "%");
+            }
+
+            namedQuery.setFirstResult(rowsCount * ( (page-1) ) );
+            namedQuery.setMaxResults(rowsCount);
+
+            List<UserEntity> resultList = namedQuery.getResultList();
             for (UserEntity p : resultList) {
                 TUser tUser = new TUser();
                 tUser.setId(p.getId());
@@ -151,11 +182,12 @@ public class UserServiceImpl implements UserService {
                 tUser.setLogin(p.getLogin());
                 tUser.setPhoneCode(p.getPhoneCode());
                 tUser.setPhoneNumber(p.getPhoneNumber());
+                tUser.setImage(Base64.encodeBase64String(p.getImage()));
                 userListResponse.getUsers().add(tUser);
                 userListResponse.setTotalCount(resultList.size());
             }
             userListResponse.setResponseStatus(new TResponseStatus(0L, "No errors"));
-        } catch (HibernateException e){
+        } catch (Exception e){
             logger.error(e);
             userListResponse.setResponseStatus(new TResponseStatus(500L, e.getMessage()));
         }

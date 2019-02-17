@@ -26,6 +26,6 @@ public interface UserService {
 
     @WebMethod
     @WebResult(name = "userListResponse")
-    TUserListResponse userGetList(@WebParam(name = "userRequest") TUser user);
+    TUserListResponse userGetList(@WebParam(name = "userRequest") TUserListRequest userListRequest);
 
 }

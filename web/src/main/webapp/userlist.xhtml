@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
@@ -19,43 +19,60 @@
         <h:form>
             <div class="row">
                 <div class="col-auto mr-auto">
-                    <h:commandButton action="#{userListBean.add()}" value="Add new user" styleClass="btn btn-primary"/>
+                    <h:commandButton action="#{userListBean.add()}" value="Add new user" styleClass="btn btn-outline-primary"/>
                 </div>
                 <div class="col-auto">
-                    <h:commandButton action="#{userListBean.logout()}" value="Logout" styleClass="btn btn-secondary"/>
+                    <h:commandButton action="#{userListBean.logout()}" value="Logout" styleClass="btn btn-outline-secondary"/>
                 </div>
             </div>
         </h:form>
 
-        <div class="list-group">
-            <ui:repeat value="#{userListBean.personList}" var="person" varStatus="loop">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="media">
-                        <h:graphicImage name="images/person.png" styleClass="mr-3" width="100px" height="100px"/>
-                        <div class="media-body">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">#{person.lastName} #{person.firstName} #{person.middleName}</h5>
-                                <div>
-                                    <small class="text-muted">Login: </small>#{person.login}
+        <h:form>
+            <div class="input-group">
+                <h:inputText id="search" a:placeholder="Search text" value="#{userListBean.searchText}"
+                             styleClass="form-control" aria-describedby="basic-addon2"/>
+                <div class="input-group-append">
+                    <h:commandButton action="#{userListBean.find()}" value="Find" styleClass="btn btn-primary"/>
+                    <h:commandButton action="#{userListBean.clear()}" value="Clear" styleClass="btn btn-info"/>
+                </div>
+            </div>
+        </h:form>
+
+        <h:panelGroup rendered="#{userListBean.personList.size() != 0}">
+            <div class="list-group">
+                <ui:repeat value="#{userListBean.personList}" var="person" varStatus="loop">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="media">
+                            <h:graphicImage name="images/person.png" styleClass="mr-3" width="100px" height="100px"/>
+                            <div class="media-body">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">#{person.lastName} #{person.firstName} #{person.middleName}</h5>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    Phone: +7(#{person.phoneCode})#{person.phoneNumber}
+                                <div class="row">
+                                    <div class="col">
+                                        <div>Phone: +7(#{person.phoneCode})#{person.phoneNumber}, Login: #{person.login}</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h:form>
-                                        <h:commandButton styleClass="btn btn-danger" value="Delete" action="#{userListBean.delete(person)}"/>
-                                    </h:form>
+                                <div class="row">
+                                    <div class="col">
+                                        <h:form>
+                                            <h:commandButton styleClass="btn btn-outline-info" value="Edit" action="#{userListBean.edit(person)}"/>
+                                            <h:commandButton styleClass="btn btn-outline-danger ml-2" value="Delete" action="#{userListBean.delete(person)}"/>
+                                        </h:form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </ui:repeat>
-        </div>
+                    </a>
+                </ui:repeat>
+            </div>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{userListBean.personList.size() == 0}">
+            <div class="alert alert-dark" role="alert">
+                No records
+            </div>
+        </h:panelGroup>
     </div>
 
 </h:body>

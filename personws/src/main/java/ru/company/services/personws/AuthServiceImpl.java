@@ -24,7 +24,7 @@ public class AuthServiceImpl implements AuthService {
         TAuthResponse authResponse = new TAuthResponse();
 
         try {
-            Query<UserEntity> personAuth = session.createNamedQuery("PersonAuth", UserEntity.class);
+            Query<UserEntity> personAuth = session.createNamedQuery("UserAuth", UserEntity.class);
             personAuth.setParameter("login", authRequest.getLogin());
             personAuth.setParameter("password", authRequest.getPassword());
             UserEntity userEntity = personAuth.uniqueResult();

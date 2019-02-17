@@ -5,6 +5,7 @@ import ru.company.services.personws.AuthServiceImpl;
 import ru.company.services.personws.AuthServiceImplService;
 import ru.company.services.personws.TAuthRequest;
 import ru.company.services.personws.TAuthResponse;
+import ru.company.services.web.SessionUtils;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -36,9 +37,7 @@ public class LoginBean {
 
         if (responseStatus != null ){
             if (responseStatus.getCode() == 0){
-                FacesContext facesContext = FacesContext.getCurrentInstance();
-                HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-                session.setAttribute("token", authResponse.getToken());
+                SessionUtils.getHttpSession().setAttribute("token", authResponse.getToken());
                 return "success";
             } else {
                 loginMessage = responseStatus.getMessage();

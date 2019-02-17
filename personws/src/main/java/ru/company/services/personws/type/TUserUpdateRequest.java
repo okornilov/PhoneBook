@@ -44,4 +44,7 @@ public class TUserUpdateRequest {
 
     @XmlElement
     private String email;
+
+    @XmlElement
+    private String image;
 }

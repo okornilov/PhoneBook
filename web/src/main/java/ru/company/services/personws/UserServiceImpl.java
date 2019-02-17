@@ -26,6 +26,36 @@ public interface UserServiceImpl {
 
     /**
      * 
+     * @param userCreateRequest
+     * @return
+     *     returns ru.company.services.personws.TUserCreateResponse
+     */
+    @WebMethod
+    @WebResult(name = "userCreateResponse", targetNamespace = "")
+    @RequestWrapper(localName = "userCreate", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserCreate")
+    @ResponseWrapper(localName = "userCreateResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserCreateResponse")
+    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userCreateRequest", output = "http://personws.services.company.ru/UserServiceImpl/userCreateResponse")
+    public TUserCreateResponse userCreate(
+        @WebParam(name = "userCreateRequest", targetNamespace = "")
+        TUserCreateRequest userCreateRequest);
+
+    /**
+     * 
+     * @param userDeleteRequest
+     * @return
+     *     returns ru.company.services.personws.TUserDeleteResponse
+     */
+    @WebMethod
+    @WebResult(name = "userDeleteResponse", targetNamespace = "")
+    @RequestWrapper(localName = "userDelete", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserDelete")
+    @ResponseWrapper(localName = "userDeleteResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserDeleteResponse")
+    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userDeleteRequest", output = "http://personws.services.company.ru/UserServiceImpl/userDeleteResponse")
+    public TUserDeleteResponse userDelete(
+        @WebParam(name = "userDeleteRequest", targetNamespace = "")
+        TUserDeleteRequest userDeleteRequest);
+
+    /**
+     * 
      * @param userUpdateRequest
      * @return
      *     returns ru.company.services.personws.TUserUpdateResponse
@@ -52,36 +82,6 @@ public interface UserServiceImpl {
     @Action(input = "http://personws.services.company.ru/UserServiceImpl/userGetListRequest", output = "http://personws.services.company.ru/UserServiceImpl/userGetListResponse")
     public TUserListResponse userGetList(
         @WebParam(name = "userRequest", targetNamespace = "")
-        TUser userRequest);
-
-    /**
-     * 
-     * @param userDeleteRequest
-     * @return
-     *     returns ru.company.services.personws.TUserDeleteResponse
-     */
-    @WebMethod
-    @WebResult(name = "userDeleteResponse", targetNamespace = "")
-    @RequestWrapper(localName = "userDelete", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserDelete")
-    @ResponseWrapper(localName = "userDeleteResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserDeleteResponse")
-    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userDeleteRequest", output = "http://personws.services.company.ru/UserServiceImpl/userDeleteResponse")
-    public TUserDeleteResponse userDelete(
-        @WebParam(name = "userDeleteRequest", targetNamespace = "")
-        TUserDeleteRequest userDeleteRequest);
-
-    /**
-     * 
-     * @param userCreateRequest
-     * @return
-     *     returns ru.company.services.personws.TUserCreateResponse
-     */
-    @WebMethod
-    @WebResult(name = "userCreateResponse", targetNamespace = "")
-    @RequestWrapper(localName = "userCreate", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserCreate")
-    @ResponseWrapper(localName = "userCreateResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserCreateResponse")
-    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userCreateRequest", output = "http://personws.services.company.ru/UserServiceImpl/userCreateResponse")
-    public TUserCreateResponse userCreate(
-        @WebParam(name = "userCreateRequest", targetNamespace = "")
-        TUserCreateRequest userCreateRequest);
+        TUserListRequest userRequest);
 
 }

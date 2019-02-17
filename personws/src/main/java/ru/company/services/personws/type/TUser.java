@@ -41,4 +41,7 @@ public class TUser {
 
     @XmlElement
     private String email;
+
+    @XmlElement
+    private String image;
 }

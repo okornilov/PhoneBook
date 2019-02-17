@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="userRequest" type="{http://personws.services.company.ru/}tUser" minOccurs="0"/>
+ *         &lt;element name="userRequest" type="{http://personws.services.company.ru/}tUserListRequest" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,17 +31,17 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class UserGetList {
 
-    protected TUser userRequest;
+    protected TUserListRequest userRequest;
 
     /**
      * Gets the value of the userRequest property.
      * 
      * @return
      *     possible object is
-     *     {@link TUser }
+     *     {@link TUserListRequest }
      *     
      */
-    public TUser getUserRequest() {
+    public TUserListRequest getUserRequest() {
         return userRequest;
     }
 
@@ -50,10 +50,10 @@ public class UserGetList {
      * 
      * @param value
      *     allowed object is
-     *     {@link TUser }
+     *     {@link TUserListRequest }
      *     
      */
-    public void setUserRequest(TUser value) {
+    public void setUserRequest(TUserListRequest value) {
         this.userRequest = value;
     }
 
