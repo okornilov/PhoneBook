@@ -26,6 +26,21 @@ public interface UserServiceImpl {
 
     /**
      * 
+     * @param userUpdateRequest
+     * @return
+     *     returns ru.company.services.personws.TUserUpdateResponse
+     */
+    @WebMethod
+    @WebResult(name = "userUpdateResponse", targetNamespace = "")
+    @RequestWrapper(localName = "userUpdate", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserUpdate")
+    @ResponseWrapper(localName = "userUpdateResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserUpdateResponse")
+    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userUpdateRequest", output = "http://personws.services.company.ru/UserServiceImpl/userUpdateResponse")
+    public TUserUpdateResponse userUpdate(
+        @WebParam(name = "userUpdateRequest", targetNamespace = "")
+        TUserUpdateRequest userUpdateRequest);
+
+    /**
+     * 
      * @param userCreateRequest
      * @return
      *     returns ru.company.services.personws.TUserCreateResponse
@@ -53,21 +68,6 @@ public interface UserServiceImpl {
     public TUserDeleteResponse userDelete(
         @WebParam(name = "userDeleteRequest", targetNamespace = "")
         TUserDeleteRequest userDeleteRequest);
-
-    /**
-     * 
-     * @param userUpdateRequest
-     * @return
-     *     returns ru.company.services.personws.TUserUpdateResponse
-     */
-    @WebMethod
-    @WebResult(name = "userUpdateResponse", targetNamespace = "")
-    @RequestWrapper(localName = "userUpdate", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserUpdate")
-    @ResponseWrapper(localName = "userUpdateResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserUpdateResponse")
-    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userUpdateRequest", output = "http://personws.services.company.ru/UserServiceImpl/userUpdateResponse")
-    public TUserUpdateResponse userUpdate(
-        @WebParam(name = "userUpdateRequest", targetNamespace = "")
-        TUserUpdateRequest userUpdateRequest);
 
     /**
      * 

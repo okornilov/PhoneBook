@@ -43,7 +43,8 @@
                 <ui:repeat value="#{userListBean.personList}" var="person" varStatus="loop">
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="media">
-                            <h:graphicImage name="images/person.png" styleClass="mr-3" width="100px" height="100px"/>
+                            <h:graphicImage rendered="#{person.image == null}" name="images/no-photo.png" styleClass="mr-3" width="100px" height="100px"/>
+                            <h:graphicImage rendered="#{person.image != null}" value="data:image/jpg;base64,#{person.image}" alt="Photo" styleClass="mr-3" width="100px" height="100px"/>
                             <div class="media-body">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">#{person.lastName} #{person.firstName} #{person.middleName}</h5>

@@ -20,7 +20,7 @@ import java.util.List;
 public class UserListBean {
 
     private List<TUser> personList;
-    private Integer totalCount;
+    private Long totalCount;
     private UserServiceImpl userServiceImplPort;
     private String searchText;
 

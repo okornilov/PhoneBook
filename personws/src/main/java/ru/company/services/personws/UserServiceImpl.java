@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
 import ru.company.services.personws.entity.UserEntity;
 import ru.company.services.personws.type.*;
@@ -172,6 +173,10 @@ public class UserServiceImpl implements UserService {
             namedQuery.setMaxResults(rowsCount);
 
             List<UserEntity> resultList = namedQuery.getResultList();
+            Long count = (Long) session.createCriteria(UserEntity.class)
+                    .setProjection(Projections.rowCount())
+                    .uniqueResult();
+
             for (UserEntity p : resultList) {
                 TUser tUser = new TUser();
                 tUser.setId(p.getId());
@@ -184,7 +189,7 @@ public class UserServiceImpl implements UserService {
                 tUser.setPhoneNumber(p.getPhoneNumber());
                 tUser.setImage(Base64.encodeBase64String(p.getImage()));
                 userListResponse.getUsers().add(tUser);
-                userListResponse.setTotalCount(resultList.size());
+                userListResponse.setTotalCount(count);
             }
             userListResponse.setResponseStatus(new TResponseStatus(0L, "No errors"));
         } catch (Exception e){

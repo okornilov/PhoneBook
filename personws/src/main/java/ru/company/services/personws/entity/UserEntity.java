@@ -19,6 +19,9 @@ import java.util.Date;
     @org.hibernate.annotations.NamedQuery(name = "UserGetList",
             query = "from UserEntity where lower(firstName) like :searchText or lower(lastName) " +
                     "like :searchText or lower(middleName) like :searchText order by id"),
+    @org.hibernate.annotations.NamedQuery(name = "UserGetListCount",
+            query = "select count(*) from UserEntity where lower(firstName) like :searchText or lower(lastName) " +
+                    "like :searchText or lower(middleName) like :searchText order by id"),
     @org.hibernate.annotations.NamedQuery(name = "UserDelete",
             query = "delete from UserEntity where id=:id"),
     @org.hibernate.annotations.NamedQuery(name = "UserAuth",

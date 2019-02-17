@@ -1,6 +1,7 @@
 package ru.company.services.web.beans;
 
 import lombok.Data;
+import org.apache.commons.codec.binary.Base64;
 import ru.company.services.personws.*;
 import ru.company.services.web.Action;
 import ru.company.services.web.SessionUtils;
@@ -9,6 +10,9 @@ import ru.company.services.web.UserAction;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 
 @ManagedBean
@@ -27,6 +31,7 @@ public class UserDetailBean {
     private String email;
     private String phoneCode;
     private String phoneNumber;
+    private Part uploadedFile;
     private Action action = Action.ADD;
 
     private UserServiceImpl userServiceImplPort;
@@ -42,6 +47,11 @@ public class UserDetailBean {
                 req.setMiddleName(middleName);
                 req.setPhoneCode(phoneCode);
                 req.setPhoneNumber(phoneNumber);
+
+                if (uploadedFile != null){
+                    req.setImage(getFileBase64String());
+                }
+
                 userServiceImplPort.userCreate(req);
                 break;
             }
@@ -55,6 +65,11 @@ public class UserDetailBean {
                 req.setMiddleName(middleName);
                 req.setPhoneCode(phoneCode);
                 req.setPhoneNumber(phoneNumber);
+
+                if (uploadedFile != null){
+                    req.setImage(getFileBase64String());
+                }
+
                 userServiceImplPort.userUpdate(req);
                 break;
             } case DELETE:{
@@ -68,6 +83,10 @@ public class UserDetailBean {
 
     public Boolean isDeleteAction(){
         return action == Action.DELETE;
+    }
+
+    public Boolean isUpdateAction(){
+        return action == Action.EDIT;
     }
 
     @PostConstruct
@@ -91,6 +110,18 @@ public class UserDetailBean {
             this.middleName = user.getMiddleName();
             this.phoneCode = user.getPhoneCode();
             this.phoneNumber = user.getPhoneNumber();
+        }
+    }
+
+    private String getFileBase64String(){
+        try (InputStream input = uploadedFile.getInputStream()) {
+            byte[] bArray = new byte[input.available()];
+            input.read(bArray);
+            return Base64.encodeBase64String(bArray);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

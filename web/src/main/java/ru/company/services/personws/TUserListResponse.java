@@ -39,7 +39,7 @@ public class TUserListResponse {
 
     protected TResponseStatus responseStatus;
     protected List<TUser> user;
-    protected Integer totalCount;
+    protected Long totalCount;
 
     /**
      * Gets the value of the responseStatus property.
@@ -102,7 +102,7 @@ public class TUserListResponse {
      *     {@link Integer }
      *     
      */
-    public Integer getTotalCount() {
+    public Long getTotalCount() {
         return totalCount;
     }
 
@@ -114,7 +114,7 @@ public class TUserListResponse {
      *     {@link Integer }
      *     
      */
-    public void setTotalCount(Integer value) {
+    public void setTotalCount(Long value) {
         this.totalCount = value;
     }
 

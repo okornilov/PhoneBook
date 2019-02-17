@@ -24,7 +24,7 @@ public class TUserListResponse {
     List<TUser> users;
 
     @XmlElement
-    Integer totalCount;
+    Long totalCount;
 
     public TUserListResponse() {
         this.users = new ArrayList<TUser>();

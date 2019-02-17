@@ -28,6 +28,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="phoneCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="phoneNumber" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="image" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -47,7 +48,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "birthDate",
     "phoneCode",
     "phoneNumber",
-    "email"
+    "email",
+    "image"
 })
 public class TUserUpdateRequest {
 
@@ -62,6 +64,7 @@ public class TUserUpdateRequest {
     protected String phoneCode;
     protected String phoneNumber;
     protected String email;
+    protected String image;
 
     /**
      * Gets the value of the userId property.
@@ -293,6 +296,30 @@ public class TUserUpdateRequest {
      */
     public void setEmail(String value) {
         this.email = value;
+    }
+
+    /**
+     * Gets the value of the image property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * Sets the value of the image property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setImage(String value) {
+        this.image = value;
     }
 
 }
