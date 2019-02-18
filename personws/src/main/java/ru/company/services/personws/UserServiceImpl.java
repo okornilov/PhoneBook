@@ -12,16 +12,19 @@ import ru.company.services.personws.type.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
-import javax.jws.WebResult;
-import javax.jws.WebService;
+import javax.annotation.Resource;
+import javax.jws.*;
+import javax.xml.ws.WebServiceContext;
 import java.util.List;
 
 @WebService
+@HandlerChain(file = "handlers.xml")
 public class UserServiceImpl implements UserService {
 
     private static Logger logger = Logger.getLogger(UserServiceImpl.class);
+
+    @Resource
+    private WebServiceContext serviceContext;
 
     @WebMethod
     @WebResult(name = "userCreateResponse")

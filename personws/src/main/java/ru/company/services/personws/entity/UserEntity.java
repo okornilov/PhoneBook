@@ -6,15 +6,10 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.Date;
 
-@XmlRootElement
-@XmlAccessorType(value = XmlAccessType.FIELD)
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
 @org.hibernate.annotations.NamedQueries({
     @org.hibernate.annotations.NamedQuery(name = "UserGetList",
             query = "from UserEntity where lower(firstName) like :searchText or lower(lastName) " +

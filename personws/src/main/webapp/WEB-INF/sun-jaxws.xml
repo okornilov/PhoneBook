@@ -11,4 +11,5 @@
             name="auth"
             implementation="ru.company.services.personws.AuthServiceImpl"
             url-pattern="/auth"/>
+
 </endpoints>
