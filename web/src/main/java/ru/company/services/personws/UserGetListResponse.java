@@ -3,7 +3,6 @@ package ru.company.services.personws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://personws.services.company.ru/}tUserListResponse" minOccurs="0"/>
+ *         &lt;element name="userListResponse" type="{http://personws.services.company.ru/}tUserListResponse" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "userGetListResponse", propOrder = {
-    "_return"
+    "userListResponse"
 })
 public class UserGetListResponse {
 
-    @XmlElement(name = "return")
-    protected TUserListResponse _return;
+    protected TUserListResponse userListResponse;
 
     /**
-     * Gets the value of the return property.
+     * Gets the value of the userListResponse property.
      * 
      * @return
      *     possible object is
      *     {@link TUserListResponse }
      *     
      */
-    public TUserListResponse getReturn() {
-        return _return;
+    public TUserListResponse getUserListResponse() {
+        return userListResponse;
     }
 
     /**
-     * Sets the value of the return property.
+     * Sets the value of the userListResponse property.
      * 
      * @param value
      *     allowed object is
      *     {@link TUserListResponse }
      *     
      */
-    public void setReturn(TUserListResponse value) {
-        this._return = value;
+    public void setUserListResponse(TUserListResponse value) {
+        this.userListResponse = value;
     }
 
 }

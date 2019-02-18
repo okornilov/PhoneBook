@@ -26,62 +26,62 @@ public interface UserServiceImpl {
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns ru.company.services.personws.TUserListResponse
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "userGetList", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserGetList")
-    @ResponseWrapper(localName = "userGetListResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserGetListResponse")
-    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userGetListRequest", output = "http://personws.services.company.ru/UserServiceImpl/userGetListResponse")
-    public TUserListResponse userGetList(
-        @WebParam(name = "arg0", targetNamespace = "")
-        TUserListRequest arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns ru.company.services.personws.TUserDeleteResponse
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "userDelete", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserDelete")
-    @ResponseWrapper(localName = "userDeleteResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserDeleteResponse")
-    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userDeleteRequest", output = "http://personws.services.company.ru/UserServiceImpl/userDeleteResponse")
-    public TUserDeleteResponse userDelete(
-        @WebParam(name = "arg0", targetNamespace = "")
-        TUserDeleteRequest arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns ru.company.services.personws.TUserCreateResponse
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "userCreate", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserCreate")
-    @ResponseWrapper(localName = "userCreateResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserCreateResponse")
-    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userCreateRequest", output = "http://personws.services.company.ru/UserServiceImpl/userCreateResponse")
-    public TUserCreateResponse userCreate(
-        @WebParam(name = "arg0", targetNamespace = "")
-        TUserCreateRequest arg0);
-
-    /**
-     * 
-     * @param arg0
+     * @param userUpdateRequest
      * @return
      *     returns ru.company.services.personws.TUserUpdateResponse
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
+    @WebResult(name = "userUpdateResponse", targetNamespace = "")
     @RequestWrapper(localName = "userUpdate", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserUpdate")
     @ResponseWrapper(localName = "userUpdateResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserUpdateResponse")
     @Action(input = "http://personws.services.company.ru/UserServiceImpl/userUpdateRequest", output = "http://personws.services.company.ru/UserServiceImpl/userUpdateResponse")
     public TUserUpdateResponse userUpdate(
-        @WebParam(name = "arg0", targetNamespace = "")
-        TUserUpdateRequest arg0);
+        @WebParam(name = "userUpdateRequest", targetNamespace = "")
+        TUserUpdateRequest userUpdateRequest);
+
+    /**
+     * 
+     * @param userDeleteRequest
+     * @return
+     *     returns ru.company.services.personws.TUserDeleteResponse
+     */
+    @WebMethod
+    @WebResult(name = "userDeleteResponse", targetNamespace = "")
+    @RequestWrapper(localName = "userDelete", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserDelete")
+    @ResponseWrapper(localName = "userDeleteResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserDeleteResponse")
+    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userDeleteRequest", output = "http://personws.services.company.ru/UserServiceImpl/userDeleteResponse")
+    public TUserDeleteResponse userDelete(
+        @WebParam(name = "userDeleteRequest", targetNamespace = "")
+        TUserDeleteRequest userDeleteRequest);
+
+    /**
+     * 
+     * @param userRequest
+     * @return
+     *     returns ru.company.services.personws.TUserListResponse
+     */
+    @WebMethod
+    @WebResult(name = "userListResponse", targetNamespace = "")
+    @RequestWrapper(localName = "userGetList", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserGetList")
+    @ResponseWrapper(localName = "userGetListResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserGetListResponse")
+    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userGetListRequest", output = "http://personws.services.company.ru/UserServiceImpl/userGetListResponse")
+    public TUserListResponse userGetList(
+        @WebParam(name = "userRequest", targetNamespace = "")
+        TUserListRequest userRequest);
+
+    /**
+     * 
+     * @param userCreateRequest
+     * @return
+     *     returns ru.company.services.personws.TUserCreateResponse
+     */
+    @WebMethod
+    @WebResult(name = "userCreateResponse", targetNamespace = "")
+    @RequestWrapper(localName = "userCreate", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserCreate")
+    @ResponseWrapper(localName = "userCreateResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.UserCreateResponse")
+    @Action(input = "http://personws.services.company.ru/UserServiceImpl/userCreateRequest", output = "http://personws.services.company.ru/UserServiceImpl/userCreateResponse")
+    public TUserCreateResponse userCreate(
+        @WebParam(name = "userCreateRequest", targetNamespace = "")
+        TUserCreateRequest userCreateRequest);
 
 }

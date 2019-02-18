@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://personws.services.company.ru/}tUserDeleteRequest" minOccurs="0"/>
+ *         &lt;element name="userDeleteRequest" type="{http://personws.services.company.ru/}tUserDeleteRequest" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "userDelete", propOrder = {
-    "arg0"
+    "userDeleteRequest"
 })
 public class UserDelete {
 
-    protected TUserDeleteRequest arg0;
+    protected TUserDeleteRequest userDeleteRequest;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the userDeleteRequest property.
      * 
      * @return
      *     possible object is
      *     {@link TUserDeleteRequest }
      *     
      */
-    public TUserDeleteRequest getArg0() {
-        return arg0;
+    public TUserDeleteRequest getUserDeleteRequest() {
+        return userDeleteRequest;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the userDeleteRequest property.
      * 
      * @param value
      *     allowed object is
      *     {@link TUserDeleteRequest }
      *     
      */
-    public void setArg0(TUserDeleteRequest value) {
-        this.arg0 = value;
+    public void setUserDeleteRequest(TUserDeleteRequest value) {
+        this.userDeleteRequest = value;
     }
 
 }

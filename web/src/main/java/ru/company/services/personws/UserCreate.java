@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://personws.services.company.ru/}tUserCreateRequest" minOccurs="0"/>
+ *         &lt;element name="userCreateRequest" type="{http://personws.services.company.ru/}tUserCreateRequest" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "userCreate", propOrder = {
-    "arg0"
+    "userCreateRequest"
 })
 public class UserCreate {
 
-    protected TUserCreateRequest arg0;
+    protected TUserCreateRequest userCreateRequest;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the userCreateRequest property.
      * 
      * @return
      *     possible object is
      *     {@link TUserCreateRequest }
      *     
      */
-    public TUserCreateRequest getArg0() {
-        return arg0;
+    public TUserCreateRequest getUserCreateRequest() {
+        return userCreateRequest;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the userCreateRequest property.
      * 
      * @param value
      *     allowed object is
      *     {@link TUserCreateRequest }
      *     
      */
-    public void setArg0(TUserCreateRequest value) {
-        this.arg0 = value;
+    public void setUserCreateRequest(TUserCreateRequest value) {
+        this.userCreateRequest = value;
     }
 
 }

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://personws.services.company.ru/}tUserUpdateRequest" minOccurs="0"/>
+ *         &lt;element name="userUpdateRequest" type="{http://personws.services.company.ru/}tUserUpdateRequest" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "userUpdate", propOrder = {
-    "arg0"
+    "userUpdateRequest"
 })
 public class UserUpdate {
 
-    protected TUserUpdateRequest arg0;
+    protected TUserUpdateRequest userUpdateRequest;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the userUpdateRequest property.
      * 
      * @return
      *     possible object is
      *     {@link TUserUpdateRequest }
      *     
      */
-    public TUserUpdateRequest getArg0() {
-        return arg0;
+    public TUserUpdateRequest getUserUpdateRequest() {
+        return userUpdateRequest;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the userUpdateRequest property.
      * 
      * @param value
      *     allowed object is
      *     {@link TUserUpdateRequest }
      *     
      */
-    public void setArg0(TUserUpdateRequest value) {
-        this.arg0 = value;
+    public void setUserUpdateRequest(TUserUpdateRequest value) {
+        this.userUpdateRequest = value;
     }
 
 }
