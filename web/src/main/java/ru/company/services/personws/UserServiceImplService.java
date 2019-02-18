@@ -1,14 +1,16 @@
 
 package ru.company.services.personws;
 
+import ru.company.services.web.SessionUtils;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-import javax.xml.ws.WebEndpoint;
-import javax.xml.ws.WebServiceClient;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.WebServiceFeature;
+import javax.xml.ws.*;
+import javax.xml.ws.handler.MessageContext;
 
 
 /**
@@ -17,7 +19,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "UserServiceImplService", targetNamespace = "http://personws.services.company.ru/", wsdlLocation = "http://localhost:8080/personws/personws?WSDL")
+@WebServiceClient(name = "UserServiceImplService", targetNamespace = "http://personws.services.company.ru/", wsdlLocation = "http://localhost:8080/personws/personws?wsdl")
 public class UserServiceImplService
     extends Service
 {
@@ -30,7 +32,7 @@ public class UserServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8080/personws/personws?WSDL");
+            url = new URL("http://localhost:8080/personws/personws?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
@@ -69,7 +71,13 @@ public class UserServiceImplService
      */
     @WebEndpoint(name = "UserServiceImplPort")
     public UserServiceImpl getUserServiceImplPort() {
-        return super.getPort(new QName("http://personws.services.company.ru/", "UserServiceImplPort"), UserServiceImpl.class);
+        UserServiceImpl port = super.getPort(new QName("http://personws.services.company.ru/", "UserServiceImplPort"), UserServiceImpl.class);
+        BindingProvider prov = (BindingProvider)port;
+
+        Map<String, Object> headers = new HashMap<>();
+        headers.put("token", Collections.singletonList(SessionUtils.getHttpSession().getAttribute("token")));
+        prov.getRequestContext().put(MessageContext.HTTP_REQUEST_HEADERS, headers);
+        return port;
     }
 
     /**

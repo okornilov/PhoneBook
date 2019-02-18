@@ -39,4 +39,19 @@ public interface AuthServiceImpl {
         @WebParam(name = "authRequest", targetNamespace = "")
         TAuthRequest authRequest);
 
+    /**
+     * 
+     * @param checkSessionRequest
+     * @return
+     *     returns ru.company.services.personws.TResponseStatus
+     */
+    @WebMethod
+    @WebResult(name = "sessionStatus", targetNamespace = "")
+    @RequestWrapper(localName = "checkSession", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.CheckSession")
+    @ResponseWrapper(localName = "checkSessionResponse", targetNamespace = "http://personws.services.company.ru/", className = "ru.company.services.personws.CheckSessionResponse")
+    @Action(input = "http://personws.services.company.ru/AuthServiceImpl/checkSessionRequest", output = "http://personws.services.company.ru/AuthServiceImpl/checkSessionResponse")
+    public TResponseStatus checkSession(
+        @WebParam(name = "checkSessionRequest", targetNamespace = "")
+        TCheckSessionRequest checkSessionRequest);
+
 }

@@ -4,10 +4,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import ru.company.services.personws.entity.UserEntity;
+import ru.company.services.personws.entity.User;
 import ru.company.services.personws.entity.UserSession;
 import ru.company.services.personws.type.TAuthRequest;
 import ru.company.services.personws.type.TAuthResponse;
+import ru.company.services.personws.type.TCheckSessionRequest;
 import ru.company.services.personws.type.TResponseStatus;
 
 import javax.jws.WebMethod;
@@ -27,16 +28,16 @@ public class AuthServiceImpl implements AuthService {
         TAuthResponse authResponse = new TAuthResponse();
 
         try {
-            Query<UserEntity> personAuth = session.createNamedQuery("UserAuth");
+            Query<User> personAuth = session.createNamedQuery("UserAuth");
             personAuth.setParameter("login", authRequest.getLogin());
             personAuth.setParameter("password", authRequest.getPassword());
-            UserEntity userEntity = personAuth.uniqueResult();
+            User user = personAuth.uniqueResult();
 
-            if (userEntity != null){
+            if (user != null){
                 String token = UUID.randomUUID().toString();
                 UserSession userSession = new UserSession();
                 userSession.setToken(token);
-                userSession.setUser(userEntity);
+                userSession.setUser(user);
                 userSession.setExpireDate(new Date());
 
                 Session dbSession = DBSessionFactory.getSession();
@@ -61,5 +62,38 @@ public class AuthServiceImpl implements AuthService {
             session.close();
         }
         return authResponse;
+    }
+
+    @WebMethod
+    @WebResult(name = "sessionStatus")
+    public TResponseStatus checkSession(@WebParam(name = "checkSessionRequest") TCheckSessionRequest checkSessionRequest) {
+        Session session = DBSessionFactory.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query query = session.createNamedQuery("CheckToken");
+        query.setParameter("token", checkSessionRequest.getToken());
+
+        UserSession userSession = (UserSession) query.uniqueResult();
+        TResponseStatus responseStatus = new TResponseStatus();
+
+        try {
+            if (userSession != null){
+                userSession.setExpireDate(new Date()); //обновляем срок действия сессии
+                session.update(userSession);
+                transaction.commit();
+                responseStatus.setCode(0L);
+                responseStatus.setMessage("Success");
+            } else {
+                responseStatus.setCode(403L);
+                responseStatus.setMessage("Token is not valid");
+            }
+        } catch (Exception e){
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+
+
+        return responseStatus;
     }
 }

@@ -6,9 +6,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import ru.company.ConfigUtils;
+import ru.company.services.personws.entity.User;
 import ru.company.services.personws.entity.UserSession;
 import ru.company.type.TDataBase;
-import ru.company.services.personws.entity.UserEntity;
 
 public class DBSessionFactory {
 
@@ -40,7 +40,7 @@ public class DBSessionFactory {
         }
 
         Configuration cfg = new Configuration()
-                .addAnnotatedClass(UserEntity.class)
+                .addAnnotatedClass(User.class)
                 .addAnnotatedClass(UserSession.class);
 
         cfg.setProperty("hibernate.connection.url", database.getUrl());

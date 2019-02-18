@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
-import ru.company.services.personws.entity.UserEntity;
+import ru.company.services.personws.entity.User;
 import ru.company.services.personws.type.*;
 
 import javax.annotation.PostConstruct;
@@ -34,21 +34,21 @@ public class UserServiceImpl implements UserService {
         Transaction transaction = session.beginTransaction();
 
         try {
-            UserEntity userEntity = new UserEntity();
-            userEntity.setFirstName(userCreateRequest.getFirstName());
-            userEntity.setLastName(userCreateRequest.getLastName());
-            userEntity.setMiddleName(userCreateRequest.getMiddleName());
-            userEntity.setBirthDate(userCreateRequest.getBirthDate());
-            userEntity.setLogin(userCreateRequest.getLogin());
-            userEntity.setPassword(userCreateRequest.getPassword());
-            userEntity.setPhoneCode(userCreateRequest.getPhoneCode());
-            userEntity.setPhoneNumber(userCreateRequest.getPhoneNumber());
+            User user = new User();
+            user.setFirstName(userCreateRequest.getFirstName());
+            user.setLastName(userCreateRequest.getLastName());
+            user.setMiddleName(userCreateRequest.getMiddleName());
+            user.setBirthDate(userCreateRequest.getBirthDate());
+            user.setLogin(userCreateRequest.getLogin());
+            user.setPassword(userCreateRequest.getPassword());
+            user.setPhoneCode(userCreateRequest.getPhoneCode());
+            user.setPhoneNumber(userCreateRequest.getPhoneNumber());
 
             if (userCreateRequest.getImage() != null){
-                userEntity.setImage(Base64.decodeBase64(userCreateRequest.getImage()));
+                user.setImage(Base64.decodeBase64(userCreateRequest.getImage()));
             }
 
-            Long id = (Long) session.save(userEntity);
+            Long id = (Long) session.save(user);
             transaction.commit();
             tUserCreateResponse.setUserId(id);
             tUserCreateResponse.setResponseStatus(new TResponseStatus(0L, "No errors"));
@@ -76,37 +76,37 @@ public class UserServiceImpl implements UserService {
         Session session = DBSessionFactory.getSession();
         Transaction transaction = session.beginTransaction();
         try {
-            UserEntity userEntity = session.load(UserEntity.class, userUpdateRequest.getUserId());
+            User user = session.load(User.class, userUpdateRequest.getUserId());
             if (userUpdateRequest.getFirstName() != null){
-                userEntity.setFirstName(userUpdateRequest.getFirstName());
+                user.setFirstName(userUpdateRequest.getFirstName());
             }
             if (userUpdateRequest.getLastName() != null){
-                userEntity.setLastName(userUpdateRequest.getLastName());
+                user.setLastName(userUpdateRequest.getLastName());
             }
             if (userUpdateRequest.getMiddleName() != null){
-                userEntity.setMiddleName(userUpdateRequest.getMiddleName());
+                user.setMiddleName(userUpdateRequest.getMiddleName());
             }
             if (userUpdateRequest.getBirthDate() != null){
-                userEntity.setBirthDate(userUpdateRequest.getBirthDate());
+                user.setBirthDate(userUpdateRequest.getBirthDate());
             }
             if (userUpdateRequest.getLogin() != null){
-                userEntity.setLogin(userUpdateRequest.getLogin());
+                user.setLogin(userUpdateRequest.getLogin());
             }
             if (userUpdateRequest.getPassword() != null){
-                userEntity.setPassword(userUpdateRequest.getPassword());
+                user.setPassword(userUpdateRequest.getPassword());
             }
             if (userUpdateRequest.getPhoneCode() != null){
-                userEntity.setPhoneCode(userUpdateRequest.getPhoneCode());
+                user.setPhoneCode(userUpdateRequest.getPhoneCode());
             }
             if (userUpdateRequest.getPhoneNumber() != null){
-                userEntity.setPhoneNumber(userUpdateRequest.getPhoneNumber());
+                user.setPhoneNumber(userUpdateRequest.getPhoneNumber());
             }
 
             if (userUpdateRequest.getImage() != null){
-                userEntity.setImage(Base64.decodeBase64(userUpdateRequest.getImage()));
+                user.setImage(Base64.decodeBase64(userUpdateRequest.getImage()));
             }
 
-            session.update(userEntity);
+            session.update(user);
             transaction.commit();
             tUserUpdateResponse.setResponseStatus(new TResponseStatus(0L, "No errors"));
         } catch (HibernateException e){
@@ -175,12 +175,12 @@ public class UserServiceImpl implements UserService {
             namedQuery.setFirstResult(rowsCount * ( (page-1) ) );
             namedQuery.setMaxResults(rowsCount);
 
-            List<UserEntity> resultList = namedQuery.getResultList();
-            Long count = (Long) session.createCriteria(UserEntity.class)
+            List<User> resultList = namedQuery.getResultList();
+            Long count = (Long) session.createCriteria(User.class)
                     .setProjection(Projections.rowCount())
                     .uniqueResult();
 
-            for (UserEntity p : resultList) {
+            for (User p : resultList) {
                 TUser tUser = new TUser();
                 tUser.setId(p.getId());
                 tUser.setFirstName(p.getFirstName());

@@ -2,6 +2,8 @@ package ru.company.services.personws;
 
 import ru.company.services.personws.type.TAuthRequest;
 import ru.company.services.personws.type.TAuthResponse;
+import ru.company.services.personws.type.TCheckSessionRequest;
+import ru.company.services.personws.type.TResponseStatus;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -16,4 +18,8 @@ public interface AuthService {
     @WebMethod
     @WebResult(name = "authResponse")
     TAuthResponse auth(@WebParam(name = "authRequest") TAuthRequest authRequest);
+
+    @WebMethod
+    @WebResult(name = "sessionStatus")
+    TResponseStatus checkSession(@WebParam(name = "checkSessionRequest") TCheckSessionRequest checkSessionRequest);
 }

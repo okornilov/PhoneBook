@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for userUpdate complex type.
+ * <p>Java class for checkSessionResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="userUpdate">
+ * &lt;complexType name="checkSessionResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://personws.services.company.ru/}tUserUpdateRequest" minOccurs="0"/>
+ *         &lt;element name="sessionStatus" type="{http://personws.services.company.ru/}tResponseStatus" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "userUpdate", propOrder = {
-    "arg0"
+@XmlType(name = "checkSessionResponse", propOrder = {
+    "sessionStatus"
 })
-public class UserUpdate {
+public class CheckSessionResponse {
 
-    protected TUserUpdateRequest arg0;
+    protected TResponseStatus sessionStatus;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the sessionStatus property.
      * 
      * @return
      *     possible object is
-     *     {@link TUserUpdateRequest }
+     *     {@link TResponseStatus }
      *     
      */
-    public TUserUpdateRequest getArg0() {
-        return arg0;
+    public TResponseStatus getSessionStatus() {
+        return sessionStatus;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the sessionStatus property.
      * 
      * @param value
      *     allowed object is
-     *     {@link TUserUpdateRequest }
+     *     {@link TResponseStatus }
      *     
      */
-    public void setArg0(TUserUpdateRequest value) {
-        this.arg0 = value;
+    public void setSessionStatus(TResponseStatus value) {
+        this.sessionStatus = value;
     }
 
 }

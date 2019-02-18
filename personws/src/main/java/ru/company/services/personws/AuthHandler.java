@@ -38,7 +38,7 @@ public class AuthHandler implements SOAPHandler<SOAPMessageContext> {
             Session session = DBSessionFactory.getSession();
             try {
 
-                Query query = session.createQuery("from UserSession where token = :token");
+                Query query = session.createNamedQuery("CheckToken");
                 query.setParameter("token", token);
                 UserSession userSession = (UserSession) query.uniqueResult();
 

@@ -1,8 +1,6 @@
 
 package ru.company.services.personws;
 
-import ru.company.ConfigUtils;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.xml.namespace.QName;
@@ -19,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "AuthServiceImplService", targetNamespace = "http://personws.services.company.ru/")
+@WebServiceClient(name = "AuthServiceImplService", targetNamespace = "http://personws.services.company.ru/", wsdlLocation = "http://localhost:8080/personws/auth?wsdl")
 public class AuthServiceImplService
     extends Service
 {
@@ -32,7 +30,7 @@ public class AuthServiceImplService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL(ConfigUtils.getHostUrl()+ "/personws/auth?wsdl");
+            url = new URL("http://localhost:8080/personws/auth?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

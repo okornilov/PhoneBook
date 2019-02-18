@@ -3,6 +3,7 @@ package ru.company.services.personws;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="userDeleteResponse" type="{http://personws.services.company.ru/}tUserDeleteResponse" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://personws.services.company.ru/}tUserDeleteResponse" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "userDeleteResponse", propOrder = {
-    "userDeleteResponse"
+    "_return"
 })
 public class UserDeleteResponse {
 
-    protected TUserDeleteResponse userDeleteResponse;
+    @XmlElement(name = "return")
+    protected TUserDeleteResponse _return;
 
     /**
-     * Gets the value of the userDeleteResponse property.
+     * Gets the value of the return property.
      * 
      * @return
      *     possible object is
      *     {@link TUserDeleteResponse }
      *     
      */
-    public TUserDeleteResponse getUserDeleteResponse() {
-        return userDeleteResponse;
+    public TUserDeleteResponse getReturn() {
+        return _return;
     }
 
     /**
-     * Sets the value of the userDeleteResponse property.
+     * Sets the value of the return property.
      * 
      * @param value
      *     allowed object is
      *     {@link TUserDeleteResponse }
      *     
      */
-    public void setUserDeleteResponse(TUserDeleteResponse value) {
-        this.userDeleteResponse = value;
+    public void setReturn(TUserDeleteResponse value) {
+        this._return = value;
     }
 
 }
