@@ -13,6 +13,11 @@
             <to-view-id>/userList.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>changeLocale</from-outcome>
+            <to-view-id>/</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>

@@ -19,7 +19,18 @@
                 <h:form action="" autocomplete="off">
                     <div class="card">
                         <div class="card-header">
-                            <h3>#{logMsg['title']}</h3>
+                            <div class="row align-middle">
+                                <div class="col-auto mr-auto">
+                                    <h3>#{logMsg['title']}</h3>
+                                </div>
+                                <div class="col-auto">
+                                    <h:form>
+                                        <h:commandLink action="#{loginBean.setLocale('ru')}" value="RU"/> |
+                                        <h:commandLink action="#{loginBean.setLocale('en')}" value="EN"/>
+                                    </h:form>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="card-body">
                             <div style="display:#{loginBean.loginMessage == null  ? 'none' : 'block'}">

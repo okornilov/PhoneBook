@@ -1,6 +1,5 @@
 package ru.company.services.personws;
 
-import com.google.inject.Inject;
 import ru.company.services.personws.facade.UserServiceFacade;
 import ru.company.services.personws.facade.UserServiceFacadeImpl;
 import ru.company.services.personws.type.*;

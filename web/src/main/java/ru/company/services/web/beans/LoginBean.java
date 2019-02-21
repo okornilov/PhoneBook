@@ -13,6 +13,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
+import java.util.Locale;
 
 @ManagedBean
 @RequestScoped
@@ -44,5 +45,11 @@ public class LoginBean {
             }
         }
         return "error";
+    }
+
+    public String setLocale(String language){
+        Locale locale = new Locale(language);
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+        return "changeLocale";
     }
 }
