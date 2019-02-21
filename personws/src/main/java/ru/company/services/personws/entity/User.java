@@ -1,13 +1,16 @@
 package ru.company.services.personws.entity;
 
 import lombok.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "pb_user")
+@Table(name = "pb_user", indexes = {
+        @Index(name = "PB_USER_SESSION_INDEX_0", columnList = "login,password")
+})
 @Data
 @NoArgsConstructor
 @org.hibernate.annotations.NamedQueries({
@@ -70,4 +73,7 @@ public class User {
     @Column
     private byte[] image;
 
+    public void setPassword(@NonNull String password) {
+        this.password = DigestUtils.md5Hex(password);
+    }
 }

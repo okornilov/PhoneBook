@@ -9,7 +9,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 @Entity
-@Table(name = "pb_user_session")
+@Table(name = "pb_user_session", indexes = {
+        @Index(name = "PB_USER_INDEX_0", columnList = "token")
+})
 @NamedQueries({
         @NamedQuery(name = "CheckToken", query = "from UserSession where token = :token and expireDate > current_timestamp")
 })

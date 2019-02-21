@@ -32,4 +32,14 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+
+    <application>
+        <message-bundle>common.i10n.Messages</message-bundle>
+
+        <locale-config>
+            <default-locale>ru_RU</default-locale>
+            <supported-locale>en_US</supported-locale>
+        </locale-config>
+
+    </application>
 </faces-config>

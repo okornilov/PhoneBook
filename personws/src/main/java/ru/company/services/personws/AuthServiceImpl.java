@@ -1,5 +1,6 @@
 package ru.company.services.personws;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -30,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
         try {
             Query<User> personAuth = session.createNamedQuery("UserAuth");
             personAuth.setParameter("login", authRequest.getLogin());
-            personAuth.setParameter("password", authRequest.getPassword());
+            personAuth.setParameter("password", DigestUtils.md5Hex(authRequest.getPassword()));
             User user = personAuth.uniqueResult();
 
             if (user != null){
