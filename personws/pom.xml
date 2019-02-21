@@ -48,5 +48,10 @@
             <version>7.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+            <version>4.2.2</version>
+        </dependency>
     </dependencies>
 </project>

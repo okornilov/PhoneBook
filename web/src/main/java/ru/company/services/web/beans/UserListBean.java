@@ -43,17 +43,17 @@ public class UserListBean {
 
     public String edit(TUser user){
         SessionUtils.getHttpSession().setAttribute("userAction",new UserAction(Action.EDIT, user));
-        return "useritem";
+        return "userDetail";
     }
 
     public String delete(TUser user){
         SessionUtils.getHttpSession().setAttribute("userAction",new UserAction(Action.DELETE, user));
-        return "useritem";
+        return "userDetail";
     }
 
     public String add(){
         SessionUtils.getHttpSession().removeAttribute("userAction");
-        return "useritem";
+        return "userDetail";
     }
 
     public String find(){
@@ -62,12 +62,12 @@ public class UserListBean {
         TUserListResponse tUserListResponse = userServiceImplPort.userGetList(req);
         totalCount = tUserListResponse.getTotalCount();
         personList = tUserListResponse.getUser();
-        return "userlist";
+        return "userList";
     }
 
     public String clear(){
         this.searchText = null;
-        return "userlist";
+        return "userList";
     }
 
 

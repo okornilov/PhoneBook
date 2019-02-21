@@ -13,36 +13,5 @@ import java.util.Date;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @Setter
-public class TUserCreateRequest {
-
-    @XmlElement
-    private String login;
-
-    @XmlElement
-    private String password;
-
-    @XmlElement
-    private String firstName;
-
-    @XmlElement
-    private String lastName;
-
-    @XmlElement
-    private String middleName;
-
-    @XmlElement
-    private Date birthDate;
-
-    @XmlElement
-    private String phoneCode;
-
-    @XmlElement
-    private String phoneNumber;
-
-    @XmlElement
-    private String email;
-
-    @XmlElement
-    private String image;
-
+public class TUserCreateRequest extends TUserRequestBase {
 }

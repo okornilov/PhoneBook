@@ -10,35 +10,49 @@
         <from-view-id>/login.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>success</from-outcome>
-            <to-view-id>/userlist.xhtml</to-view-id>
+            <to-view-id>/userList.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/userlist.xhtml</from-view-id>
+        <from-view-id>/userList.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>useritem</from-outcome>
-            <to-view-id>/useritem.xhtml</to-view-id>
+            <from-outcome>userDetail</from-outcome>
+            <to-view-id>/userDetail.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/useritem.xhtml</from-view-id>
+        <from-view-id>/userDetail.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>cancel</from-outcome>
-            <to-view-id>/userlist.xhtml</to-view-id>
+            <to-view-id>/userList.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
 
     <application>
-        <message-bundle>common.i10n.Messages</message-bundle>
+
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+
+        <resource-bundle>
+            <base-name>login.messages</base-name>
+            <var>logMsg</var>
+        </resource-bundle>
+
+        <resource-bundle>
+            <base-name>userList.messages</base-name>
+            <var>ulMsg</var>
+        </resource-bundle>
 
         <locale-config>
-            <default-locale>ru_RU</default-locale>
-            <supported-locale>en_US</supported-locale>
+            <default-locale>ru</default-locale>
+            <supported-locale>en</supported-locale>
         </locale-config>
 
     </application>

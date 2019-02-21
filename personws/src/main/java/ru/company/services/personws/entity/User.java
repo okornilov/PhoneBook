@@ -70,6 +70,9 @@ public class User {
     @XmlElement
     private String phoneNumber;
 
+    @XmlElement
+    private String email;
+
     @Column
     private byte[] image;
 

@@ -78,7 +78,7 @@ public class UserDetailBean {
                 userServiceImplPort.userDelete(req);
             }
         }
-        return "userlist.xhtml?faces-redirect=true";
+        return "userList.xhtml?faces-redirect=true";
     }
 
     public Boolean isDeleteAction(){
@@ -110,6 +110,7 @@ public class UserDetailBean {
             this.middleName = user.getMiddleName();
             this.phoneCode = user.getPhoneCode();
             this.phoneNumber = user.getPhoneNumber();
+            this.email = user.getEmail();
         }
     }
 
